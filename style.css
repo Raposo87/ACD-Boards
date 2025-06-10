@@ -450,7 +450,63 @@
 
 
 
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px; /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Hidden by default, shown only on small screens */
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+            z-index: 10; /* Above other content */
+        }
 
+        .scroll-indicator span {
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            transform: rotate(45deg);
+            animation: bounce 1.5s infinite;
+        }
+
+        .scroll-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .scroll-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) rotate(45deg);
+            }
+            40% {
+                transform: translateY(-10px) rotate(45deg);
+            }
+            60% {
+                transform: translateY(-5px) rotate(45deg);
+            }
+        }
+
+        /* Media query to display only on small screens */
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                display: flex; /* Show only on screens up to 768px wide */
+            }
+        }
+
+        /* Class to hide the indicator via JS */
+        .scroll-indicator.hide-scroll-indicator {
+            opacity: 0;
+            pointer-events: none; /* Prevent interaction once hidden */
+        }
 
         .image-placeholder {
     position: relative; /* Necessário para posicionar os botões */
